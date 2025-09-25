@@ -1,30 +1,26 @@
+import "@/index.css";
 import React, { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUser, setUser } from "@/store/userSlice";
-import Login from "@/components/pages/Login";
-import Signup from "@/components/pages/Signup";
-import Callback from "@/components/pages/Callback";
-import ErrorPage from "@/components/pages/ErrorPage";
-import ResetPassword from "@/components/pages/ResetPassword";
-import PromptPassword from "@/components/pages/PromptPassword";
-import App from "@/index.css";
-import App from "@/services/mockData/customers.json";
-import App from "@/services/mockData/companies.json";
-import App from "@/services/mockData/plans.json";
-import App from "@/services/mockData/appointments.json";
 import Header from "@/components/organisms/Header";
 import AdminCustomersPage from "@/components/pages/AdminCustomersPage";
 import CheckoutPage from "@/components/pages/CheckoutPage";
 import AdminReportsPage from "@/components/pages/AdminReportsPage";
+import Login from "@/components/pages/Login";
 import BillingPage from "@/components/pages/BillingPage";
 import AppointmentsPage from "@/components/pages/AppointmentsPage";
+import Signup from "@/components/pages/Signup";
+import ResetPassword from "@/components/pages/ResetPassword";
 import AdminDashboardPage from "@/components/pages/AdminDashboardPage";
+import Callback from "@/components/pages/Callback";
+import PromptPassword from "@/components/pages/PromptPassword";
 import DashboardPage from "@/components/pages/DashboardPage";
 import AdminPlansPage from "@/components/pages/AdminPlansPage";
 import AdminSettingsPage from "@/components/pages/AdminSettingsPage";
 import PlansPage from "@/components/pages/PlansPage";
+import ErrorPage from "@/components/pages/ErrorPage";
+import { clearUser, setUser } from "@/store/userSlice";
 // Create auth context
 export const AuthContext = createContext(null);
 
@@ -144,36 +140,52 @@ const AppContent = () => {
 
 return (
     <AuthContext.Provider value={authMethods}>
-      <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
         <Header userRole={userRole} />
-        
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/callback" element={<Callback />} />
-          <Route path="/error" element={<ErrorPage />} />
-          <Route path="/prompt-password/:appId/:emailAddress/:provider" element={<PromptPassword />} />
-          <Route path="/reset-password/:appId/:fields" element={<ResetPassword />} />
-      <main>
-        <Routes>
-          {/* Customer Routes */}
-          <Route path="/" element={<PlansPage />} />
-          <Route path="/plans" element={<PlansPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/appointments" element={<AppointmentsPage />} />
-          <Route path="/billing" element={<BillingPage />} />
-          
-{/* Admin Routes */}
-          <Route path="/admin" element={<AdminDashboardPage />} />
-          <Route path="/admin/customers" element={<AdminCustomersPage />} />
-          <Route path="/admin/plans" element={<AdminPlansPage />} />
-          <Route path="/admin/reports" element={<AdminReportsPage />} />
-          <Route path="/admin/settings" element={<AdminSettingsPage />} />
-        </Routes>
-      </main>
+        <main>
+            <Routes>
+                {/* Auth Routes */}
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/callback" element={<Callback />} />
+                <Route path="/error" element={<ErrorPage />} />
+                <Route
+                    path="/prompt-password/:appId/:emailAddress/:provider"
+                    element={<PromptPassword />} />
+                <Route path="/reset-password/:appId/:fields" element={<ResetPassword />} />
+                {/* Customer Routes */}
+                <Route path="/" element={<PlansPage />} />
+                <Route path="/plans" element={<PlansPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/dashboard" element={<DashboardPage />} />
+                <Route path="/appointments" element={<AppointmentsPage />} />
+                <Route path="/billing" element={<BillingPage />} />
+                {/* Admin Routes */}
+                <Route path="/admin" element={<AdminDashboardPage />} />
+                <Route path="/admin/customers" element={<AdminCustomersPage />} />
+                <Route path="/admin/plans" element={<AdminPlansPage />} />
+                <Route path="/admin/reports" element={<AdminReportsPage />} />
+                <Route path="/admin/settings" element={<AdminSettingsPage />} />
+            </Routes>
+        </main>
+        <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            style={{
+                zIndex: 9999
+            }} />
+    </div>);
+    ;
 
-      <ToastContainer
+    <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -184,26 +196,10 @@ return (
         draggable
         pauseOnHover
         theme="light"
-        style={{ zIndex: 9999 }}
-      />
-    </div>
-  );
-};
-
-</div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
-    </AuthContext.Provider>
+        style={{
+            zIndex: 9999
+        }} />
+</AuthContext.Provider>
   );
 };
 
