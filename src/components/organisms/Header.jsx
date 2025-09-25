@@ -197,42 +197,7 @@ className={cn(
           </div>
         </div>
       )}
-
-        {/* Logout Button */}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={logout}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
-        >
-          <ApperIcon name="LogOut" className="w-4 h-4" />
-          <span>Logout</span>
-        </Button>
-              >
-                <ApperIcon name={item.icon} className="w-4 h-4" />
-                <span>{item.label}</span>
-              </Link>
-            ))}
-            <div className="pt-2 border-t border-gray-100">
-              <button
-                onClick={() => {
-                  handleRoleSwitch();
-                  setIsMobileMenuOpen(false);
-                }}
-                className="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-all duration-200 w-full"
-              >
-                <ApperIcon 
-                  name={userRole === "admin" ? "User" : "Settings"} 
-                  className="w-4 h-4" 
-                />
-                <span>{userRole === "admin" ? "Customer View" : "Admin"}</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+)}
     </header>
   );
 };
-
-export default Header;
