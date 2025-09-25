@@ -21,6 +21,7 @@ import AdminSettingsPage from "@/components/pages/AdminSettingsPage";
 import PlansPage from "@/components/pages/PlansPage";
 import ErrorPage from "@/components/pages/ErrorPage";
 import { clearUser, setUser } from "@/store/userSlice";
+import ProtectedRoute from "@/components/ProtectedRoute";
 // Create auth context
 export const AuthContext = createContext(null);
 
@@ -153,19 +154,19 @@ return (
                     path="/prompt-password/:appId/:emailAddress/:provider"
                     element={<PromptPassword />} />
                 <Route path="/reset-password/:appId/:fields" element={<ResetPassword />} />
-                {/* Customer Routes */}
+{/* Customer Routes */}
                 <Route path="/" element={<PlansPage />} />
                 <Route path="/plans" element={<PlansPage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="/dashboard" element={<DashboardPage />} />
-                <Route path="/appointments" element={<AppointmentsPage />} />
-                <Route path="/billing" element={<BillingPage />} />
+                <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+                <Route path="/appointments" element={<ProtectedRoute><AppointmentsPage /></ProtectedRoute>} />
+                <Route path="/billing" element={<ProtectedRoute><BillingPage /></ProtectedRoute>} />
                 {/* Admin Routes */}
-                <Route path="/admin" element={<AdminDashboardPage />} />
-                <Route path="/admin/customers" element={<AdminCustomersPage />} />
-                <Route path="/admin/plans" element={<AdminPlansPage />} />
-                <Route path="/admin/reports" element={<AdminReportsPage />} />
-                <Route path="/admin/settings" element={<AdminSettingsPage />} />
+                <Route path="/admin" element={<ProtectedRoute><AdminDashboardPage /></ProtectedRoute>} />
+                <Route path="/admin/customers" element={<ProtectedRoute><AdminCustomersPage /></ProtectedRoute>} />
+                <Route path="/admin/plans" element={<ProtectedRoute><AdminPlansPage /></ProtectedRoute>} />
+                <Route path="/admin/reports" element={<ProtectedRoute><AdminReportsPage /></ProtectedRoute>} />
+                <Route path="/admin/settings" element={<ProtectedRoute><AdminSettingsPage /></ProtectedRoute>} />
             </Routes>
         </main>
         <ToastContainer
