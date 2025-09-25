@@ -39,23 +39,23 @@ const PlanCard = ({
 
       <div className="text-center">
         <h3 className="text-xl font-bold text-gray-900 mb-2">
-          {plan.name}
+{plan.name_c || plan.name}
         </h3>
         
         <div className="mb-6">
-          <span className="text-4xl font-bold text-gradient-primary">
-            {formatPrice(plan.price)}
+<span className="text-4xl font-bold text-gradient-primary">
+            {formatPrice(plan.price_c || plan.price)}
           </span>
-          <span className="text-gray-600 ml-1">/{plan.interval}</span>
+          <span className="text-gray-600 ml-1">/{plan.interval_c || plan.interval}</span>
         </div>
 
-        <p className="text-gray-600 text-sm mb-6">
-          Service visits every {plan.serviceFrequency}
+<p className="text-gray-600 text-sm mb-6">
+          Service visits every {plan.service_frequency_c || plan.serviceFrequency}
         </p>
       </div>
 
-      <div className="space-y-3 mb-8">
-        {plan.features.map((feature, index) => (
+<div className="space-y-3 mb-8">
+        {(plan.features_c ? plan.features_c.split('\n') : plan.features || []).map((feature, index) => (
           <div key={index} className="flex items-center text-sm">
             <ApperIcon 
               name="Check" 

@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../App";
+import { brandService, getBrandSettings } from "@/services/api/brandService";
 import { cn } from "@/utils/cn";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
-import { brandService } from "@/services/api/brandService";
 
 const Header = ({ userRole = "customer" }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [brandSettings, setBrandSettings] = useState(null);
-  const location = useLocation();
+const location = useLocation();
   const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
+  
   const customerNavItems = [
     { label: "Plans", path: "/plans", icon: "Package" },
     { label: "My Account", path: "/dashboard", icon: "User" },
@@ -25,7 +28,7 @@ const Header = ({ userRole = "customer" }) => {
     { label: "Settings", path: "/admin/settings", icon: "Settings" }
   ];
 
-const navItems = userRole === "admin" ? adminNavItems : customerNavItems;
+  const navItems = userRole === "admin" ? adminNavItems : customerNavItems;
 
   useEffect(() => {
     loadBrandSettings();
@@ -153,8 +156,29 @@ className={cn(
                       ? "bg-gray-50"
                       : "text-primary-600 bg-primary-50"
                     : "text-gray-600 hover:bg-gray-50"
-                )}
+)}
                 style={isActive(item.path) && userRole === "customer" ? { color: primaryColor } : {}}
+              >
+                <ApperIcon 
+                  name={item.icon} 
+                  className="w-4 h-4" 
+                />
+                <span>{item.label}</span>
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {/* Logout Button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={logout}
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+        >
+          <ApperIcon name="LogOut" className="w-4 h-4" />
+          <span>Logout</span>
+        </Button>
               >
                 <ApperIcon name={item.icon} className="w-4 h-4" />
                 <span>{item.label}</span>
