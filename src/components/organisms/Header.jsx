@@ -197,7 +197,6 @@ className={cn(
           </div>
         </div>
 )}
-)}
     </header>
   );
 };
