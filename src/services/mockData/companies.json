@@ -1,0 +1,10 @@
+[
+  {
+    "Id": 1,
+    "name": "Denver HVAC Solutions",
+    "logo": "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=100&h=100&fit=crop&crop=center",
+    "primaryColor": "#2563eb",
+    "contactEmail": "info@denverhvac.com",
+    "embedCode": "<script src='https://serviceflow.com/embed/denver-hvac'></script>"
+  }
+]

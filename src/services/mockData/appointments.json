@@ -1,0 +1,74 @@
+[
+  {
+    "Id": 1,
+    "customerId": 1,
+    "planId": 2,
+    "scheduledDate": "2024-03-15T10:00:00.000Z",
+    "status": "Scheduled",
+    "technicianId": "Tech-001",
+    "notes": "Quarterly maintenance visit - Complete Care plan"
+  },
+  {
+    "Id": 2,
+    "customerId": 2,
+    "planId": 1,
+    "scheduledDate": "2024-03-20T14:00:00.000Z",
+    "status": "Scheduled",
+    "technicianId": "Tech-002",
+    "notes": "Bi-annual maintenance visit - Basic Care plan"
+  },
+  {
+    "Id": 3,
+    "customerId": 3,
+    "planId": 3,
+    "scheduledDate": "2024-02-28T09:00:00.000Z",
+    "status": "Completed",
+    "technicianId": "Tech-001",
+    "notes": "Monthly maintenance visit - Premium Care plan"
+  },
+  {
+    "Id": 4,
+    "customerId": 1,
+    "planId": 2,
+    "scheduledDate": "2024-01-15T11:00:00.000Z",
+    "status": "Completed",
+    "technicianId": "Tech-003",
+    "notes": "Initial maintenance visit after signup"
+  },
+  {
+    "Id": 5,
+    "customerId": 4,
+    "planId": 2,
+    "scheduledDate": "2024-03-25T15:30:00.000Z",
+    "status": "Scheduled",
+    "technicianId": "Tech-002",
+    "notes": "Quarterly maintenance visit - Complete Care plan"
+  },
+  {
+    "Id": 6,
+    "customerId": 5,
+    "planId": 1,
+    "scheduledDate": "2024-04-01T10:00:00.000Z",
+    "status": "Scheduled",
+    "technicianId": "Tech-001",
+    "notes": "First maintenance visit - Basic Care plan"
+  },
+  {
+    "Id": 7,
+    "customerId": 3,
+    "planId": 3,
+    "scheduledDate": "2024-01-28T13:00:00.000Z",
+    "status": "Completed",
+    "technicianId": "Tech-002",
+    "notes": "Monthly maintenance visit - Premium Care plan"
+  },
+  {
+    "Id": 8,
+    "customerId": 2,
+    "planId": 1,
+    "scheduledDate": "2024-01-10T16:00:00.000Z",
+    "status": "Completed",
+    "technicianId": "Tech-003",
+    "notes": "Initial maintenance visit after signup"
+  }
+]

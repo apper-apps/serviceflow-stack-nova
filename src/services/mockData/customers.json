@@ -1,0 +1,77 @@
+[
+  {
+    "Id": 1,
+    "email": "john.smith@email.com",
+    "name": "John Smith",
+    "phone": "(555) 123-4567",
+    "address": {
+      "street": "123 Main Street",
+      "city": "Denver",
+      "state": "CO",
+      "zipCode": "80201"
+    },
+    "planId": 2,
+    "stripeCustomerId": "stripe_1234567890",
+    "createdAt": "2024-01-15T10:30:00.000Z"
+  },
+  {
+    "Id": 2,
+    "email": "sarah.johnson@email.com",
+    "name": "Sarah Johnson",
+    "phone": "(555) 234-5678",
+    "address": {
+      "street": "456 Oak Avenue",
+      "city": "Denver",
+      "state": "CO",
+      "zipCode": "80202"
+    },
+    "planId": 1,
+    "stripeCustomerId": "stripe_2345678901",
+    "createdAt": "2024-01-20T14:15:00.000Z"
+  },
+  {
+    "Id": 3,
+    "email": "mike.wilson@email.com",
+    "name": "Mike Wilson",
+    "phone": "(555) 345-6789",
+    "address": {
+      "street": "789 Pine Road",
+      "city": "Denver",
+      "state": "CO",
+      "zipCode": "80203"
+    },
+    "planId": 3,
+    "stripeCustomerId": "stripe_3456789012",
+    "createdAt": "2024-02-01T09:45:00.000Z"
+  },
+  {
+    "Id": 4,
+    "email": "lisa.brown@email.com",
+    "name": "Lisa Brown",
+    "phone": "(555) 456-7890",
+    "address": {
+      "street": "321 Elm Street",
+      "city": "Denver",
+      "state": "CO",
+      "zipCode": "80204"
+    },
+    "planId": 2,
+    "stripeCustomerId": "stripe_4567890123",
+    "createdAt": "2024-02-10T16:20:00.000Z"
+  },
+  {
+    "Id": 5,
+    "email": "david.martinez@email.com",
+    "name": "David Martinez",
+    "phone": "(555) 567-8901",
+    "address": {
+      "street": "654 Maple Lane",
+      "city": "Denver",
+      "state": "CO",
+      "zipCode": "80205"
+    },
+    "planId": 1,
+    "stripeCustomerId": "stripe_5678901234",
+    "createdAt": "2024-02-15T11:30:00.000Z"
+  }
+]

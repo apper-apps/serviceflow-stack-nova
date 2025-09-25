@@ -1,0 +1,56 @@
+[
+  {
+    "Id": 1,
+    "name": "Basic Care",
+    "price": 29.99,
+    "interval": "month",
+    "features": [
+      "Bi-annual maintenance visits",
+      "Filter replacement included",
+      "System inspection & cleaning",
+      "Basic diagnostic checks",
+      "Priority scheduling",
+      "10% discount on repairs"
+    ],
+    "serviceFrequency": "6 months",
+    "isActive": true
+  },
+  {
+    "Id": 2,
+    "name": "Complete Care",
+    "price": 49.99,
+    "interval": "month",
+    "features": [
+      "Quarterly maintenance visits",
+      "Premium filter replacement",
+      "Comprehensive system tune-up",
+      "Advanced diagnostic testing",
+      "Priority emergency service",
+      "15% discount on repairs",
+      "Annual duct inspection",
+      "Thermostat calibration"
+    ],
+    "serviceFrequency": "3 months",
+    "isActive": true
+  },
+  {
+    "Id": 3,
+    "name": "Premium Care",
+    "price": 79.99,
+    "interval": "month",
+    "features": [
+      "Monthly maintenance visits",
+      "Premium HEPA filter replacement",
+      "Complete system optimization",
+      "Advanced performance testing",
+      "24/7 emergency service",
+      "20% discount on repairs",
+      "Annual duct cleaning included",
+      "Smart thermostat integration",
+      "Energy efficiency analysis",
+      "Extended warranty coverage"
+    ],
+    "serviceFrequency": "1 month",
+    "isActive": true
+  }
+]
