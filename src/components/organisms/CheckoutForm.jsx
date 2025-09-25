@@ -4,6 +4,7 @@ import Input from "@/components/atoms/Input";
 import Button from "@/components/atoms/Button";
 import Card from "@/components/atoms/Card";
 import StepIndicator from "@/components/molecules/StepIndicator";
+import ApperIcon from "@/components/ApperIcon";
 import { customerService } from "@/services/api/customerService";
 import { appointmentService } from "@/services/api/appointmentService";
 import { toast } from "react-toastify";
