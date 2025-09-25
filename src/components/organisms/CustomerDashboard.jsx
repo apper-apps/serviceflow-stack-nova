@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import Card from "@/components/atoms/Card";
-import Badge from "@/components/atoms/Badge";
-import Button from "@/components/atoms/Button";
-import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
-import ApperIcon from "@/components/ApperIcon";
 import { customerService } from "@/services/api/customerService";
 import { planService } from "@/services/api/planService";
 import { appointmentService } from "@/services/api/appointmentService";
+import { brandService } from "@/services/api/brandService";
 import { toast } from "react-toastify";
-
+import ApperIcon from "@/components/ApperIcon";
+import Loading from "@/components/ui/Loading";
+import Error from "@/components/ui/Error";
+import Button from "@/components/atoms/Button";
+import Badge from "@/components/atoms/Badge";
+import Card from "@/components/atoms/Card";
 const CustomerDashboard = () => {
   const location = useLocation();
   const { newCustomer } = location.state || {};
@@ -20,7 +20,7 @@ const CustomerDashboard = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(!newCustomer);
   const [error, setError] = useState("");
-
+  const [brandSettings, setBrandSettings] = useState(null);
   const loadDashboardData = async () => {
     try {
       setLoading(true);
@@ -54,9 +54,19 @@ const CustomerDashboard = () => {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     loadDashboardData();
+    loadBrandSettings();
   }, []);
+
+  const loadBrandSettings = async () => {
+    try {
+      const settings = await brandService.getBrandSettings();
+      setBrandSettings(settings);
+    } catch (err) {
+      console.error("Error loading brand settings:", err);
+    }
+  };
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -140,8 +150,17 @@ const CustomerDashboard = () => {
       <div className="grid md:grid-cols-4 gap-6 mb-8">
         <Card className="p-6">
           <div className="flex items-center">
-            <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
-              <ApperIcon name="Package" className="w-6 h-6 text-primary-600" />
+<div 
+              className="w-12 h-12 rounded-lg flex items-center justify-center mr-4"
+              style={{ 
+                backgroundColor: `${brandSettings?.primaryColor || '#2563eb'}20` 
+              }}
+            >
+              <ApperIcon 
+                name="Package" 
+                className="w-6 h-6"
+                style={{ color: brandSettings?.primaryColor || '#2563eb' }}
+              />
             </div>
             <div>
               <p className="text-sm text-gray-600">Current Plan</p>
@@ -172,7 +191,7 @@ const CustomerDashboard = () => {
               <ApperIcon name="Calendar" className="w-6 h-6 text-blue-600" />
             </div>
             <div>
-              <p className="text-sm text-gray-600">Next Service</p>
+<p className="text-sm text-gray-600">Next Service</p>
               <p className="text-xl font-bold text-gray-900">
                 {nextAppointment ? 
                   new Date(nextAppointment.scheduledDate).toLocaleDateString() : 
@@ -302,11 +321,22 @@ const CustomerDashboard = () => {
             
             {nextAppointment ? (
               <div className="space-y-4">
-                <div className="text-center p-4 bg-primary-50 rounded-lg">
-                  <p className="text-sm text-primary-600 font-medium">
+<div 
+                  className="text-center p-4 rounded-lg"
+                  style={{ 
+                    backgroundColor: `${brandSettings?.primaryColor || '#2563eb'}10` 
+                  }}
+                >
+<p 
+                    className="text-sm font-medium"
+                    style={{ color: brandSettings?.primaryColor || '#2563eb' }}
+                  >
                     Scheduled for
                   </p>
-                  <p className="text-lg font-bold text-primary-700">
+                  <p 
+                    className="text-lg font-bold"
+                    style={{ color: brandSettings?.primaryColor || '#2563eb' }}
+                  >
                     {formatDate(nextAppointment.scheduledDate)}
                   </p>
                 </div>

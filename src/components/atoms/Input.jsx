@@ -37,12 +37,13 @@ const Input = forwardRef(({
           </div>
         )}
         
-        <input
+<input
           type={type}
           className={cn(
             baseStyles,
             errorStyles,
             iconStyles[iconPosition],
+            type === "file" && "file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-primary-50 file:text-primary-600 hover:file:bg-primary-100",
             className
           )}
           ref={ref}

@@ -11,15 +11,13 @@ import { planService } from "@/services/api/planService";
 import { appointmentService } from "@/services/api/appointmentService";
 import { toast } from "react-toastify";
 
-const AdminDashboard = () => {
+const AdminDashboard = ({ activeSection = "overview" }) => {
   const [customers, setCustomers] = useState([]);
   const [plans, setPlans] = useState([]);
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeTab, setActiveTab] = useState("overview");
-
   const loadDashboardData = async () => {
     try {
       setLoading(true);
@@ -373,38 +371,12 @@ const AdminDashboard = () => {
         <p className="text-gray-600">
           Manage your HVAC maintenance business
         </p>
-      </div>
+</div>
 
-      {/* Tabs */}
-      <div className="mb-8">
-        <div className="border-b border-gray-200">
-          <nav className="-mb-px flex space-x-8">
-            {[
-              { id: "overview", label: "Overview", icon: "BarChart3" },
-              { id: "customers", label: "Customers", icon: "Users" },
-              { id: "appointments", label: "Appointments", icon: "Calendar" }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
-                  activeTab === tab.id
-                    ? "border-primary-500 text-primary-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                }`}
-              >
-                <ApperIcon name={tab.icon} className="w-4 h-4" />
-                <span>{tab.label}</span>
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
-
-      {/* Tab Content */}
-      {activeTab === "overview" && renderOverview()}
-      {activeTab === "customers" && renderCustomers()}
-      {activeTab === "appointments" && renderAppointments()}
+      {/* Content */}
+      {activeSection === "overview" && renderOverview()}
+      {activeSection === "customers" && renderCustomers()}
+      {activeSection === "appointments" && renderAppointments()}
     </div>
   );
 };

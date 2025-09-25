@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/utils/cn";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
+import { brandService } from "@/services/api/brandService";
 
 const Header = ({ userRole = "customer" }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [brandSettings, setBrandSettings] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
-
   const customerNavItems = [
     { label: "Plans", path: "/plans", icon: "Package" },
     { label: "My Account", path: "/dashboard", icon: "User" },
@@ -24,7 +25,20 @@ const Header = ({ userRole = "customer" }) => {
     { label: "Settings", path: "/admin/settings", icon: "Settings" }
   ];
 
-  const navItems = userRole === "admin" ? adminNavItems : customerNavItems;
+const navItems = userRole === "admin" ? adminNavItems : customerNavItems;
+
+  useEffect(() => {
+    loadBrandSettings();
+  }, []);
+
+  const loadBrandSettings = async () => {
+    try {
+      const settings = await brandService.getBrandSettings();
+      setBrandSettings(settings);
+    } catch (err) {
+      console.error("Error loading brand settings:", err);
+    }
+  };
 
   const isActive = (path) => location.pathname === path;
 
@@ -36,20 +50,40 @@ const Header = ({ userRole = "customer" }) => {
     }
   };
 
+  // Use brand settings or fallback to defaults
+  const logoSrc = brandSettings?.logo;
+  const companyName = brandSettings?.companyName || "ServiceFlow Pro";
+  const primaryColor = brandSettings?.primaryColor || "#2563eb";
   return (
     <header className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link
+<Link
             to={userRole === "admin" ? "/admin" : "/plans"}
             className="flex items-center space-x-2"
           >
-            <div className="w-8 h-8 bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg flex items-center justify-center">
-              <ApperIcon name="Wrench" className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold text-gradient-primary">
-              ServiceFlow Pro
+            {logoSrc ? (
+              <img 
+                src={logoSrc} 
+                alt={companyName}
+                className="w-8 h-8 object-contain"
+              />
+            ) : (
+              <div 
+                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${primaryColor} 0%, ${primaryColor}dd 100%)` 
+                }}
+              >
+                <ApperIcon name="Wrench" className="w-5 h-5 text-white" />
+              </div>
+            )}
+            <span 
+              className="text-xl font-bold"
+              style={{ color: userRole === "customer" ? primaryColor : undefined }}
+            >
+              {companyName}
             </span>
           </Link>
 
@@ -59,12 +93,18 @@ const Header = ({ userRole = "customer" }) => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={cn(
+className={cn(
                   "flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                   isActive(item.path)
-                    ? "text-primary-600 bg-primary-50"
-                    : "text-gray-600 hover:text-primary-600 hover:bg-gray-50"
+                    ? userRole === "customer" 
+                      ? "bg-gray-50" 
+                      : "text-primary-600 bg-primary-50"
+                    : "text-gray-600 hover:bg-gray-50",
+                  isActive(item.path) && userRole === "customer" && {
+                    color: primaryColor
+                  }
                 )}
+                style={isActive(item.path) && userRole === "customer" ? { color: primaryColor } : {}}
               >
                 <ApperIcon name={item.icon} className="w-4 h-4" />
                 <span>{item.label}</span>
@@ -106,12 +146,15 @@ const Header = ({ userRole = "customer" }) => {
                 key={item.path}
                 to={item.path}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={cn(
+className={cn(
                   "flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
                   isActive(item.path)
-                    ? "text-primary-600 bg-primary-50"
-                    : "text-gray-600 hover:text-primary-600 hover:bg-gray-50"
+                    ? userRole === "customer"
+                      ? "bg-gray-50"
+                      : "text-primary-600 bg-primary-50"
+                    : "text-gray-600 hover:bg-gray-50"
                 )}
+                style={isActive(item.path) && userRole === "customer" ? { color: primaryColor } : {}}
               >
                 <ApperIcon name={item.icon} className="w-4 h-4" />
                 <span>{item.label}</span>

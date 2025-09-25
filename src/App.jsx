@@ -8,7 +8,10 @@ import DashboardPage from "@/components/pages/DashboardPage";
 import AppointmentsPage from "@/components/pages/AppointmentsPage";
 import BillingPage from "@/components/pages/BillingPage";
 import AdminDashboardPage from "@/components/pages/AdminDashboardPage";
-
+import AdminCustomersPage from "@/components/pages/AdminCustomersPage";
+import AdminPlansPage from "@/components/pages/AdminPlansPage";
+import AdminReportsPage from "@/components/pages/AdminReportsPage";
+import AdminSettingsPage from "@/components/pages/AdminSettingsPage";
 const AppContent = () => {
   const location = useLocation();
   const [userRole, setUserRole] = useState(() => {
@@ -39,12 +42,12 @@ const AppContent = () => {
           <Route path="/appointments" element={<AppointmentsPage />} />
           <Route path="/billing" element={<BillingPage />} />
           
-          {/* Admin Routes */}
+{/* Admin Routes */}
           <Route path="/admin" element={<AdminDashboardPage />} />
-          <Route path="/admin/customers" element={<AdminDashboardPage />} />
-          <Route path="/admin/plans" element={<AdminDashboardPage />} />
-          <Route path="/admin/reports" element={<AdminDashboardPage />} />
-          <Route path="/admin/settings" element={<AdminDashboardPage />} />
+          <Route path="/admin/customers" element={<AdminCustomersPage />} />
+          <Route path="/admin/plans" element={<AdminPlansPage />} />
+          <Route path="/admin/reports" element={<AdminReportsPage />} />
+          <Route path="/admin/settings" element={<AdminSettingsPage />} />
         </Routes>
       </main>
 
