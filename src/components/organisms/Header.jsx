@@ -196,8 +196,10 @@ className={cn(
             </div>
           </div>
         </div>
-      )}
+)}
 )}
     </header>
   );
 };
+
+export default Header;
